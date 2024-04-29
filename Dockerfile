@@ -1,6 +1,6 @@
-FROM haskell:9.6.4 as dev
+FROM arm64v8/haskell:9.6.4 as dev
 
-ENV RESOLVER lts-22.17
+ENV RESOLVER lts-22.18
 ENV LC_ALL=C.UTF-8
 
 RUN stack setup --resolver=$RESOLVER 
@@ -12,7 +12,8 @@ RUN stack install --resolver=$RESOLVER process-1.6.19.0 Cabal-3.10.1.0 haskeline
 
 FROM debian:bullseye-slim
 
-MAINTAINER Dmitry Astapov <dastapov@gmail.com>
+MAINTAINER Bharath C Sudheer <bharath.sudheer@gmail.com>
+# Based off of: dastapov's https://github.com/adept/hledger-docker
 
 RUN apt-get update && apt-get install --yes libgmp10 libtinfo6 sudo && rm -rf /var/lib/apt/lists
 RUN adduser --system --ingroup root hledger && usermod -aG sudo hledger && mkdir /.cache && chmod 0777 /.cache

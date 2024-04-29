@@ -1,5 +1,7 @@
 # Docker image for hledger and associated tools
 
+> Note this repository is only a fork of [adept/hledger-docker](https://github.com/adept/hledger-docker). It exists to provide arm64v8 support (e.g. Raspberry Pi)
+
 This docker image provides [hledger](http://hledger.org/), the plain text accounting software, and
 associated tools:
 
@@ -21,14 +23,14 @@ associated tools:
 By default, container will start hledger-web on port 5000, reading journal `hledger.journal` from volume `data`, so assuming your journal is in `~/journals/all.journal`, you can run:
 
 ```
-docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/all.journal -v "$HOME/journals:/data" -p 5000:5000 --user $(id --user) dastapov/hledger
+docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/all.journal -v "$HOME/journals:/data" -p 5000:5000 --user $(id --user) bharathcs2401/hledger-arm64v8
 ```
 
 and navigate to `http://localhost:5000` for hledger-web
 
 If you have LEDGER_FILE environmed variable defined already, you can try:
 ```
-docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 --user $(id --user) dastapov/hledger
+docker run --rm -d -e HLEDGER_JOURNAL_FILE=/data/$(basename $LEDGER_FILE) -v "$(dirname $LEDGER_FILE):/data" -p 5000:5000 --user $(id --user) bharathcs2401/hledger-arm64v8
 ```
 
 Any extra arguments you provide will be passed to `hledger-web`.
@@ -62,7 +64,7 @@ providing alternative start command to `docker run`.
 
 You can just drop into a shell in the container and run hledger there (remember to include `-it`):
 ```
-docker run --rm -it -v "$HOME/hledger-data:/data" --user $(id --user) dastapov/hledger bash
+docker run --rm -it -v "$HOME/hledger-data:/data" --user $(id --user) bharathcs2401/hledger-arm64v8 bash
 ```
 
 Github repo contains helper script that simplifies invocation:
@@ -75,7 +77,7 @@ Github repo contains helper script that simplifies invocation:
 You can use `docker run` to invoke `hledger` directly:
 
 ```
-docker run --rm -v "$HOME/hledger-data:/data" --user $(id --user) dastapov/hledger hledger -f /data/hledger.journal stats
+docker run --rm -v "$HOME/hledger-data:/data" --user $(id --user) bharathcs2401/hledger-arm64v8 hledger -f /data/hledger.journal stats
 ```
 
 Make sure you provide `--rm` argument to `docker run`, otherwise your containers will be kept in the container
@@ -92,5 +94,5 @@ docker image build --tag hledger-dev --target dev .
 
 Alternatively, you can use pre-built image via `latest-dev` or `VERSION-dev` tags:
 ```
-docker run --rm -it -v "$HOME/hledger-data:/data" dastapov/hledger:latest-dev bash
+docker run --rm -it -v "$HOME/hledger-data:/data" bharathcs2401/hledger-arm64v8:latest-dev bash
 ```

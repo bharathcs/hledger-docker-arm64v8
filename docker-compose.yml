@@ -1,7 +1,7 @@
 version: '2.1'
 services:
     hledger-dockerized:
-        image: dastapov/hledger
+        image: bharathcs2401/hledger-arm64v8
         environment:
             -   HLEDGER_JOURNAL_FILE=/data/all.journal
                 # if behind reverse proxy, set base url
