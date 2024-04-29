@@ -25,4 +25,4 @@ docker container run --rm -it --volume "$dir:/data" \
        --env LEDGER_FILE=/data/$file \
        -p 5000:5000 \
        --user $(id --user) \
-       bharathcs/hledger-arm64v8 $extra_args "$@"
+       bharathcs2401/hledger-arm64v8 $extra_args "$@"
