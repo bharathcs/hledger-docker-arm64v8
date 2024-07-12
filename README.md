@@ -1,5 +1,5 @@
 > [!NOTE]
-> This repository will not be maintained. Refer instead to [bharathcs/hledger-docker](github.com/bharathcs/hledger-docker), published on as [bharathcs2401/hledger](hub.docker.com/bharathcs2401/hledger), which has multi-platform support for its images and more customisability available.
+> This repository will not be maintained. Refer instead to [bharathcs/hledger-docker](github.com/bharathcs/hledger-docker), published on as [bharathcs2401/hledger](hub.docker.com/bharathcs2401/hledger), which has multi-platform support (including arm64 and amd64) for its images and more customisability available.
 
 For a drop in replacement:
 
