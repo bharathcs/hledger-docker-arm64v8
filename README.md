@@ -1,3 +1,32 @@
+> [!NOTE]
+> This repository will not be maintained. Refer instead to [bharathcs/hledger-docker](github.com/bharathcs/hledger-docker), published on as [bharathcs2401/hledger](hub.docker.com/bharathcs2401/hledger), which has multi-platform support for its images and more customisability available.
+
+For a drop in replacement:
+
+```sh
+docker run \
+  --volume='/path/to/hledger-data:/data' \
+  --publish='5004:5000' \
+  -d bharathcs2401/hledger:1.34 \
+  hledger-web --serve --host=0.0.0.0 port=5000 --file='/data/main.ledger'
+```
+
+or
+
+```yaml
+# docker-compose.yml
+services:
+  hledger-web:
+    image: bharathcs2401/hledger:1.34
+    volumes:
+      - /path/to/hledger-data:/data
+    ports:
+      - 5000
+    command: hledger-web --serve --host=0.0.0.0 port=5000 --file='/data/main.ledger'
+```
+
+---
+
 # Docker image for hledger and associated tools
 
 > Note this repository is only a fork of [adept/hledger-docker](https://github.com/adept/hledger-docker). It exists to provide arm64v8 support (e.g. Raspberry Pi)
